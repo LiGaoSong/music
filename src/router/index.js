@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/rank',
     name: 'Rank',
-    component: () => import('../views/rank/index.vue')
+    component: () => import('../views/rank/index.vue'),
   },
   {
     path: '/playlist',
@@ -39,6 +39,11 @@ const routes = [
     path: '/my',
     name: 'My',
     component: () => import('../views/my/My.vue')
+  },
+  {
+    path: '/playlist/detail',
+    name: 'playDetail',
+    component: () => import('../views/play/detail.vue')
   },
 
 ]

@@ -1,11 +1,12 @@
-import {reqSingerList, reqCatList,reqTrack,reqToplist } from "../api"
+import {reqSingerList, reqCatList,reqTrack,reqToplist, reqTrelatedPlayList } from "../api"
 
 const state ={
     singer:[],
     catSub:{},
     categories:{},
     track:[],
-    toplist:[]
+    toplist:[],
+    trelatedPlayList:[]
 
 }
 const mutations ={
@@ -24,6 +25,9 @@ const mutations ={
     TOPLIST(state, payload){
         state.toplist = payload
     },
+    TRELATEPLAYLIST(state, payload){
+        state.trelatedPlayList = payload
+    },
 
 
 }
@@ -35,7 +39,7 @@ const actions ={
             commit("SINGER", result.artists)
         }
     },
-    async getCatList({commit}, ){
+    async getCatList({commit}){
         let result = await reqCatList()
         if(result.code == 200){
             commit("CATSUB", result.sub)
@@ -45,15 +49,21 @@ const actions ={
     async getTrack({commit},parma={} ){
         let result = await reqTrack(parma)
         if(result.code == 200){
-            commit("TRACK", result.songs)
+            commit("TRACK", result.playlists)
         }
     },
-    async getToplist({commit},){
+    async getToplist({commit}){
         let result = await reqToplist()
         if(result.code == 200){
             commit("TOPLIST", result.list)
         }
     },
+    async getTrelatedPlayList({commit}, id){
+        let result = await reqTrelatedPlayList(id)
+        if(result.code == 200){
+            commit("TRELATEPLAYLIST", result.playlists)
+        }
+    }
  
 }
 const getters ={

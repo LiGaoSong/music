@@ -81,3 +81,11 @@ export const reqToplist = () => {
 
     })
 }
+//详情歌单推荐
+export const reqTrelatedPlayList = (id) => {
+    return requests({
+        url:`/related/playlist?id=${id}`,
+        method:'get',
+
+    })
+}

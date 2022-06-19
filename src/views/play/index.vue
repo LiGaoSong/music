@@ -15,7 +15,7 @@
           <span class="item" v-if="item.children.length > 8">
             <el-col :span="8">
               <el-dropdown trigger="click">
-                <span class="el-dropdown-link"> 更多> </span>
+                <span class="el-dropdown-link" > 更多^ </span>
                 <template #dropdown>
                   <el-dropdown-menu>
                     <el-dropdown-item
@@ -24,9 +24,14 @@
                         item.children.length
                       )"
                       :key="index"
-                        @click="selectType(sub)"
-                         
-                      ><span  :class="['item', parma.cat === sub.name ? 'active' : '']">{{ sub.name }}</span></el-dropdown-item
+                      @click="selectType(sub)"
+                      ><span
+                        :class="[
+                          'item',
+                          parma.cat === sub.name ? 'active' : '',
+                        ]"
+                        >{{ sub.name }}</span
+                      ></el-dropdown-item
                     >
                   </el-dropdown-menu>
                 </template>
@@ -38,7 +43,7 @@
     </div>
     <div class="playdateil">
       <div class="top">
-        <h1>全部歌单</h1>
+        <h1>{{catNanme}}</h1>
         <div class="top-info">
           <span
             class="top-info-item"
@@ -104,15 +109,22 @@ export default {
         limit: 18,
         offset: 0,
       },
-      sub: [],
-      categoriesInfo: [],
-      list: [],
     });
+    const Palyinit = () => {
+      store.dispatch("getPlayListHot", listInfo.parma);
+    };
+    const CatListinit = () => {
+      store.dispatch("getCatList");
+    };
 
     const selectOrder = (type) => {
       listInfo.parma.order = type;
       Palyinit();
     };
+
+    const catNanme = computed(() => {
+      return !route.query.cat  ? '全部歌单' : route.query.cat
+    })
 
     const allPlayList = computed(() => {
       return store.state.home.playListHot;
@@ -126,14 +138,15 @@ export default {
     });
 
     const categoriesChild = computed(() => {
+      let listlist = []
       for (const i in categories.value) {
         const params = { name: categories.value[i] };
         params.children = catSub.value.filter((subItem) => {
           return subItem.category === Number(i);
         });
-        listInfo.categoriesInfo.push(params);
+       listlist.push(params);
       }
-      return listInfo.categoriesInfo;
+      return listlist;
     });
 
     const selectType = (sub) => {
@@ -152,14 +165,6 @@ export default {
       listInfo.parma.offset += 18;
       Palyinit();
     };
-
-    const Palyinit = () => {
-      store.dispatch("getPlayListHot", listInfo.parma);
-    };
-    const CatListinit = () => {
-      store.dispatch("getCatList");
-    };
-
     watch(
       () => route.query,
       (newVal, oldVal) => {
@@ -172,12 +177,11 @@ export default {
     watchEffect(() => {
       listInfo.parma.cat = route.query.cat;
       listInfo.parma.offset = 0;
-      Palyinit();
     });
-
     onMounted(() => {
-      Palyinit(), CatListinit();
-    });
+      Palyinit();
+      CatListinit()
+    })
 
     return {
       allPlayList,
@@ -189,6 +193,7 @@ export default {
       selectType,
       PreviousPage,
       NextPage,
+      catNanme
     };
   },
 };

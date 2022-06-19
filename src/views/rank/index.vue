@@ -14,9 +14,9 @@
           <div class="cover-user">
             <el-image
               style="width: 50px; height: 50px; border-radius: 50%"
-              :src="soar.creator.avatarUrl"
+              :src="soar.creator?.avatarUrl"
             ></el-image>
-            <span class="user-name">{{ soar.creator.nickname }}</span>
+            <span class="user-name">{{ soar.creator?.nickname }}</span>
             <span class="user-date">{{ createTime }}</span>
           </div>
           <div class="cover-data">
@@ -42,7 +42,7 @@
       <div class="songbottom">
         <div class="song-heard">
           <h4>
-            歌曲列表<em>{{ soar.tracks.length }}首歌</em>
+            歌曲列表<em>{{ soar.tracks?.length }}首歌</em>
           </h4>
           <div>
             <span class="one"
@@ -131,6 +131,7 @@ import {
   toRefs,
   watch,
   watchEffect,
+  onBeforeMount
 } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 export default {
@@ -196,14 +197,14 @@ export default {
     };
 
     const selectType = (id) => {
-      console.log(id);
+      
       router.push({ path: "/rank", query: { rId: id } });
     };
 
     watch(
       () => route.query,
       (newVal, oldVal) => {
-        console.log(newVal);
+      
         songInfo.parma.id = newVal.rId;
         songInfo.parma.offset = 0;
         store.dispatch("getHotRankList", songInfo.parma.id);
@@ -211,17 +212,24 @@ export default {
     );
 
     watchEffect(() => {
-      songInfo.parma.id = route.query.rId;
-      songInfo.parma.offset = 0;
-      store.dispatch("getHotRankList", songInfo.parma.id);
+      if(!route.query.rId){
+        songInfo.parma.id = 19723756;
+        songInfo.parma.offset = 0;
+        store.dispatch("getHotRankList", songInfo.parma.id);
+      }else{
+        songInfo.parma.id = route.query.rId;
+        songInfo.parma.offset = 0;
+        store.dispatch("getHotRankList", songInfo.parma.id);
+      }
     });
 
     const init = () => {
-      store.dispatch("getHotRankList", songInfo.parma.id);
+     
       store.dispatch("getToplist");
     };
 
     onMounted(() => {
+     
       init();
     });
 

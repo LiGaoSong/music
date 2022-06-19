@@ -1,4 +1,5 @@
 <template>
+
   <div class="songlist" >
     <el-scrollbar height="550px">
       <el-table :data="songlist" style="width: 100%" stripe height="550" >
@@ -46,4 +47,5 @@ export default {
     text-overflow: ellipsis;
   }
 }
+
 </style>

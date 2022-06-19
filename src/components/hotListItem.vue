@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item"  @click="goPlayListDetail(hotList.id)">
     <div class="img-item">
       <el-image :src="hotList.coverImgUrl" />
       <span class="item-tab"
@@ -23,7 +23,7 @@
           class="tab"
           v-for="(sub, index) in hotList.tags"
           :key="index"
-         @click="goPlayList(sub)"
+         @click.stop="goPlayList(sub)"
           >#{{ sub }}</a
         >
       </div>
@@ -61,10 +61,14 @@ export default {
       router.push({path:'/playlist',query:{cat:sub}})
     };
 
+    const goPlayListDetail = (sub) => {
+      router.push({path:'/playlist/detail',query:{rId:sub}})
+    }
 
     return {
       numberChange,
-      goPlayList
+      goPlayList,
+      goPlayListDetail
     };
   },
 };
