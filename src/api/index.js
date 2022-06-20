@@ -89,3 +89,11 @@ export const reqTrelatedPlayList = (id) => {
 
     })
 }
+//详情歌单评论
+export const reqCommentPlayList = (id) => {
+    return requests({
+        url:`/comment/playlist?id=${id}&limit=6`,
+        method:'get',
+
+    })
+}

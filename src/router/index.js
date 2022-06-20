@@ -45,6 +45,11 @@ const routes = [
     name: 'playDetail',
     component: () => import('../views/play/detail.vue')
   },
+  {
+    path: '/mvlist/detail',
+    name: 'mvlistDetail',
+    component: () => import('../views/mv/detail.vue')
+  },
 
 ]
 

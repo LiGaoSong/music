@@ -45,13 +45,25 @@
             >
           </div>
           <div class="cover-tags">
-            <h3>歌单简介 <em class="desc-close" v-if="isShowDesc" @click="isShowDesc = !isShowDesc">X</em></h3> 
-            <span class="synopsis"  @click="isShowDesc = true">{{ soar.description }}</span>
-             
-                <div class="cover-desc-all"  v-if="isShowDesc" @click="isShowDesc = !isShowDesc">{{ soar.description }}</div>
-
-                
-            
+            <h3>
+              歌单简介
+              <em
+                class="desc-close"
+                v-if="isShowDesc"
+                @click="isShowDesc = !isShowDesc"
+                >X</em
+              >
+            </h3>
+            <span class="synopsis" @click="isShowDesc = true">{{
+              soar.description
+            }}</span>
+            <div
+              class="cover-desc-all"
+              v-if="isShowDesc"
+              @click="isShowDesc = !isShowDesc"
+            >
+              {{ soar.description }}
+            </div>
           </div>
         </div>
       </div>
@@ -87,6 +99,21 @@
           </div>
         </div>
       </div>
+      <div class="comments">
+        <div class="recommend-title">歌单评论</div>
+        <div class="comments-item"  v-for="(item, index) in getCommentPlayList" :key="index">
+          <div class="user-img">
+                      <el-image
+            style="width: 50px; height: 50px; border-radius: 50%"
+            :src="item.user?.avatarUrl"
+          />
+          </div>
+          <div class="comments-name">
+            <span class="comments-nickname">{{item.user?.nickname}} <em class="comments-time">{{item.timeStr}}</em></span>
+            <span class="user-comments">{{item.content}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -117,7 +144,7 @@ export default {
     const store = useStore();
     const day = dayjs;
 
-    const isShowDesc = ref(false)
+    const isShowDesc = ref(false);
 
     const soar = computed(() => {
       return store.state.home.homeRankList;
@@ -128,6 +155,9 @@ export default {
     });
     const getTrelatedPlay = computed(() => {
       return store.state.singer.trelatedPlayList;
+    });
+    const getCommentPlayList = computed(() => {
+      return store.state.singer.commentPlayList;
     });
 
     const goPlayList = (sub) => {
@@ -150,6 +180,7 @@ export default {
       let rId = id;
       store.dispatch("getHotRankList", rId);
       store.dispatch("getTrelatedPlayList", rId);
+      store.dispatch("getCommentPlayList", rId);
     };
 
     onMounted(() => {
@@ -179,7 +210,8 @@ export default {
       loading,
       getTrelatedPlay,
       goPlayListDetail,
-      isShowDesc
+      isShowDesc,
+      getCommentPlayList
     };
   },
 };
@@ -238,7 +270,7 @@ export default {
           overflow: hidden;
           cursor: pointer;
         }
-        .desc-close{
+        .desc-close {
           position: absolute;
           right: 0;
           cursor: pointer;
@@ -261,6 +293,7 @@ export default {
       }
     }
   }
+
   .songbottom {
     text-align: left;
     padding: 20px;
@@ -302,38 +335,25 @@ export default {
   }
   .right {
     flex: 1;
-    padding: 20px;
-    .recommend {
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
-      align-items: flex-start;
-      .recommend-item {
-        display: flex;
-        margin-bottom: 20px;
+    .comments{
+      margin-top: 20px;
+      .user-img{
+        width: 50px;
+        height: 50px;
       }
-      .recommend-item:last-child {
-        margin-bottom: 0;
+      .comments-nickname{
+        color:#000;
+        .comments-time{
+          color:#909090,
+        }
       }
-      .recommend-name {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-        cursor: pointer;
-      }
-      .recommend-title::before {
-        content: "";
-        width: 7px;
-        height: 20px;
-        margin-right: 5px;
-        background-color: #f77700;
-        display: inline-block;
-      }
-      .recommend-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 10px;
+      .user-comments{
+        background-color: #d4d4d4e6;
+        text-align: left;
+        line-height: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        width: 300px;
       }
     }
   }
@@ -351,7 +371,8 @@ span {
 .cover-info,
 .songbottom,
 .recommend,
-.cover-desc-all {
+.cover-desc-all,
+.comments {
   border-radius: 10px;
   background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
   box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
@@ -362,4 +383,40 @@ span {
 .iconfont {
   margin-right: 5px;
 }
+.recommend-title::before {
+  content: "";
+  width: 7px;
+  height: 20px;
+  margin-right: 5px;
+  background-color: #f77700;
+  display: inline-block;
+}
+.recommend-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.recommend,.comments {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: flex-start;
+  .recommend-item, .comments-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .recommend-item:last-child,.comments-item:last-child {
+    margin-bottom: 0;
+  }
+  .recommend-name, .comments-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+}
+
+
 </style>

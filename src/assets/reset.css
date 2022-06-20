@@ -86,3 +86,16 @@ a:link:hover{
     clear: both;
     visibility: hidden;
 }
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #0e0e0e00;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #b4b4b4;
+    border-radius: 32px;
+}
+::-webkit-scrollbar-track{
+    background-color: #dbeffd00;
+    border-radius: 32px;
+}
+

@@ -1,4 +1,4 @@
-import {reqSingerList, reqCatList,reqTrack,reqToplist, reqTrelatedPlayList } from "../api"
+import {reqSingerList, reqCatList,reqTrack,reqToplist, reqTrelatedPlayList,reqCommentPlayList } from "../api"
 
 const state ={
     singer:[],
@@ -6,7 +6,8 @@ const state ={
     categories:{},
     track:[],
     toplist:[],
-    trelatedPlayList:[]
+    trelatedPlayList:[],
+    commentPlayList:[]
 
 }
 const mutations ={
@@ -27,6 +28,9 @@ const mutations ={
     },
     TRELATEPLAYLIST(state, payload){
         state.trelatedPlayList = payload
+    },
+    COMMENTPLAYLIST(state, payload){
+        state.commentPlayList = payload
     },
 
 
@@ -63,7 +67,13 @@ const actions ={
         if(result.code == 200){
             commit("TRELATEPLAYLIST", result.playlists)
         }
-    }
+    },
+    async getCommentPlayList({commit}, id){
+        let result = await reqCommentPlayList(id)
+        if(result.code == 200){
+            commit("COMMENTPLAYLIST", result.comments)
+        }
+    },
  
 }
 const getters ={
