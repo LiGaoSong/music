@@ -184,7 +184,6 @@ export default {
     };
 
     onMounted(() => {
-      loading.value = "true";
       init(route.query.rId);
     });
 
@@ -354,6 +353,7 @@ export default {
         padding: 10px;
         border-radius: 10px;
         width: 300px;
+        margin-top: 10px;
       }
     }
   }

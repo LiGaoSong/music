@@ -97,3 +97,27 @@ export const reqCommentPlayList = (id) => {
 
     })
 }
+//MV详情
+export const reqMVDetail = (id) => {
+    return requests({
+        url:`/mv/detail?mvid=${id}`,
+        method:'get',
+
+    })
+}
+//MV播放地址
+export const reqMVUrl = (id) => {
+    return requests({
+        url:`/mv/url?id=${id}&r=1080`,
+        method:'get',
+
+    })
+}
+//MV评论
+export const reqMVComment = (id) => {
+    return requests({
+        url:`/comment/mv?id=${id}&limit=8`,
+        method:'get',
+
+    })
+}

@@ -1,6 +1,6 @@
 <template>
-  <div class="item">
-    <div class="img-item">
+  <div class="item" @click="goMvDetail(MvItem.id)">
+    <div class="img-item" >
       <el-image :src="MvItem.cover" />
       <i class="iconfont icon-bofang"></i>
     </div>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
   name: "MvListItem",
   props: {
@@ -27,6 +28,8 @@ export default {
     },
   },
   setup() {
+
+    const router = useRouter()
     const numberChange = (num) => {
       let num1 = String(num).split("");
       if (num1.length <= 4) {
@@ -35,8 +38,14 @@ export default {
         return num1.slice(0, num1.length - 4).join("") + "万";
       }
     };
+    
+    const goMvDetail = (mvid) => {
+      router.push({path:'/mvlist/detail', query:{mvid}})
+    }
+
     return {
       numberChange,
+      goMvDetail
     };
   },
 };

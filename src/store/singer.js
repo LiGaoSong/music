@@ -1,4 +1,4 @@
-import {reqSingerList, reqCatList,reqTrack,reqToplist, reqTrelatedPlayList,reqCommentPlayList } from "../api"
+import {reqSingerList, reqCatList,reqTrack,reqToplist, reqTrelatedPlayList,reqCommentPlayList,reqMVDetail,reqMVUrl,reqMVComment } from "../api"
 
 const state ={
     singer:[],
@@ -7,7 +7,10 @@ const state ={
     track:[],
     toplist:[],
     trelatedPlayList:[],
-    commentPlayList:[]
+    commentPlayList:[],
+    mvDetail:{},
+    mvUrl:{},
+    mvComment:[]
 
 }
 const mutations ={
@@ -31,6 +34,15 @@ const mutations ={
     },
     COMMENTPLAYLIST(state, payload){
         state.commentPlayList = payload
+    },
+    MVDETAIL(state, payload){
+        state.mvDetail = payload
+    },
+    MVURL(state, payload){
+        state.mvUrl = payload
+    },
+    MVCOMMENT(state, payload){
+        state.mvComment = payload
     },
 
 
@@ -72,6 +84,24 @@ const actions ={
         let result = await reqCommentPlayList(id)
         if(result.code == 200){
             commit("COMMENTPLAYLIST", result.comments)
+        }
+    },
+    async getMVDetail({commit}, id){
+        let result = await reqMVDetail(id)
+        if(result.code == 200){
+            commit("MVDETAIL", result.data)
+        }
+    },
+    async getMVUrl({commit}, id){
+        let result = await reqMVUrl(id)
+        if(result.code == 200){
+            commit("MVURL", result.data)
+        }
+    },
+    async getMVComment({commit}, id){
+        let result = await reqMVComment(id)
+        if(result.code == 200){
+            commit("MVCOMMENT", result.comments)
         }
     },
  
