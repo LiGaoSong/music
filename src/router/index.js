@@ -50,12 +50,21 @@ const routes = [
     name: 'mvlistDetail',
     component: () => import('../views/mv/detail.vue')
   },
+  {
+    path:'/singer/detail',
+    name:'SingerDetail',
+    component: () => import('../views/singer/detail.vue')
+  },
 
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 始终滚动到顶部
+    return { top: 0 }
+  },
 })
 
 export default router

@@ -114,10 +114,20 @@ export const reqMVUrl = (id) => {
     })
 }
 //MV评论
-export const reqMVComment = (id) => {
+export const reqMVComment = (parma) => {
     return requests({
-        url:`/comment/mv?id=${id}&limit=8`,
+        url:`/comment/mv`,
         method:'get',
+        params:parma
+
+    })
+}
+//相似MV
+export const reqMVSimi = (id) => {
+    return requests({
+        url:`/simi/mv?mvid=${id}&limit=8`,
+        method:'get',
+        
 
     })
 }

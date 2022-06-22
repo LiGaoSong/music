@@ -54,7 +54,7 @@ export default {
 <style lang="scss" scoped>
 .item {
   position: relative;
-  max-width: calc(100% / 6 - 40px);
+  width: calc(100% / 6 - 40px);
   margin: 20px;
   cursor: pointer;
   .item-tab {
