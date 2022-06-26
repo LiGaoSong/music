@@ -25,8 +25,20 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
 export default {
   name: "Navbar",
+  setup(){
+    const route = useRoute()
+
+    const clickRoutePath = () => {
+      console.log(route.path);
+    }
+
+    return {
+      clickRoutePath
+    }
+  }
 };
 </script>
 

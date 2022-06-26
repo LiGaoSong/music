@@ -1,4 +1,7 @@
-import { reqSingerList, reqCatList, reqTrack, reqToplist, reqTrelatedPlayList, reqCommentPlayList, reqMVDetail, reqMVUrl, reqMVComment, reqMVSimi } from "../api"
+import { reqSingerList, reqCatList, reqTrack, reqToplist, reqTrelatedPlayList,
+     reqCommentPlayList, reqMVDetail, reqMVUrl, reqMVComment, reqMVSimi,
+     reqArtistsSong,reqArtistsMV,reqArtistsDesc,reqArtistsSimi,reqArtistsAlbum
+    } from "../api"
 
 const state = {
     singer: [],
@@ -11,7 +14,13 @@ const state = {
     mvDetail: {},
     mvUrl: {},
     mvComment: [],
-    mvSimi:[]
+    mvSimi: [],
+    artistsSong:[],
+    artistsMV:[],
+    artists:{},
+    artistsDesc:[],
+    artistsSimi:[],
+    artistsAlbum:[]
 
 }
 const mutations = {
@@ -47,6 +56,24 @@ const mutations = {
     },
     MVSIMI(state, payload) {
         state.mvSimi = payload
+    },
+    ARTISSTSSONG(state, payload) {
+        state.artistsSong = payload
+    },
+    ARTISSTS(state, payload) {
+        state.artists = payload
+    },
+    ARTISSTSMV(state, payload) {
+        state.artistsMV = payload
+    },
+    ARTISSTSDESC(state, payload) {
+        state.artistsDesc = payload
+    },
+    ARTISSTSSIMI(state, payload) {
+        state.artistsSimi = payload
+    },
+    ARTISSTSALBUM(state, payload) {
+        state.artistsAlbum = payload
     },
 
 
@@ -114,9 +141,41 @@ const actions = {
             commit("MVSIMI", result.mvs)
         }
     },
+    async getArtistsSong({ commit }, id) {
+        let result = await reqArtistsSong(id)
+        if (result.code == 200) {
+            commit("ARTISSTSSONG", result.hotSongs)
+            commit("ARTISSTS", result.artist)
+        }
+    },
+    async getArtistsMV({ commit }, id) {
+        let result = await reqArtistsMV(id)
+        if (result.code == 200) {
+            commit("ARTISSTSMV", result.mvs)
+        }
+    },
+    async getArtistsDesc({ commit }, id) {
+        let result = await reqArtistsDesc(id)
+        if (result.code == 200) {
+            commit("ARTISSTSDESC", result.introduction)
+        }
+    },
+    async getArtistsSimi({ commit }, id) {
+        let result = await reqArtistsSimi(id)
+        if (result.code == 200) {
+            commit("ARTISSTSSIMI", result.artists)
+        }
+    },
+    async getArtistsAlbum({ commit }, id) {
+        let result = await reqArtistsAlbum(id)
+        if (result.code == 200) {
+            commit("ARTISSTSALBUM", result.hotAlbums)
+        }
+    },
 
 }
 const getters = {
+
 }
 
 export default {

@@ -13,6 +13,7 @@
         <el-image
           style="width: 100px; height: 100px"
           :src="item.picUrl"
+          @click="goSingerDeatil(item.id)"
         />
       </el-tooltip>
     </div>
@@ -20,8 +21,7 @@
 </template>
 
 <script>
-import { onMounted, ref, reactive, toRefs } from "vue";
-import { useStore } from "vuex";
+import { useRouter } from 'vue-router';
 export default {
   name: "HotSingerList",
   props: {
@@ -34,9 +34,12 @@ export default {
   },
 
   setup() {
-    const store = useStore();
 
-    return {};
+    const router = useRouter()
+    const goSingerDeatil = (id) => {
+      router.push({path:'/singer/detail', query:{id}})
+    }
+    return {goSingerDeatil};
   },
 };
 </script>

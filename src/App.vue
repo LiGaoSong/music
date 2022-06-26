@@ -5,11 +5,6 @@
       <el-main>
         <search-input></search-input>
         <router-view></router-view>
-        <!-- <router-view v-slot="{ Component }">
-          <keep-alive>
-            <component :is="Component" />
-          </keep-alive>
-        </router-view> -->
       </el-main>
     </el-container>
   </div>

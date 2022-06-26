@@ -127,6 +127,8 @@ export default {
       return store.state.singer.mvSimi;
     });
 
+    console.log(route);
+
     const goSingerDetail = (artistId) => {
       console.log(artistId);
     };

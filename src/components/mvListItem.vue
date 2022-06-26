@@ -1,7 +1,7 @@
 <template>
   <div class="item" @click="goMvDetail(MvItem.id)">
     <div class="img-item" >
-      <el-image :src="MvItem.cover" />
+      <el-image :src="MvItem.cover ? MvItem.cover : MvItem.imgurl" />
       <i class="iconfont icon-bofang"></i>
     </div>
     <div class="info">

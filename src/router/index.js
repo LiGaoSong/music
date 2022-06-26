@@ -28,7 +28,19 @@ const routes = [
   {
     path: '/mvlist',
     name: 'MvList',
-    component: () => import('../views/mv/index.vue')
+    component: () => import('../views/mv/index.vue'),
+    // children:[
+    //   {
+    //     path: 'detail',
+    //     name: 'mvlistDetail',
+    //     component: () => import('../views/mv/detail.vue')
+    //   },
+    //   {
+    //     path: '/mvlist/list',
+    //     name: 'list',
+    //     component: () => import('../views/mv/mvlist.vue')
+    //   },
+    // ]
   },
   {
     path: '/singer',
@@ -54,6 +66,11 @@ const routes = [
     path:'/singer/detail',
     name:'SingerDetail',
     component: () => import('../views/singer/detail.vue')
+  },
+  {
+    path:'/album/detail',
+    name:'AlbumDetail',
+    component: () => import('../views/singer/albumdetail.vue')
   },
 
 ]

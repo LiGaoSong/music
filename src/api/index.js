@@ -78,7 +78,6 @@ export const reqToplist = () => {
     return requests({
         url:'/toplist/detail',
         method:'get',
-
     })
 }
 //详情歌单推荐
@@ -86,7 +85,6 @@ export const reqTrelatedPlayList = (id) => {
     return requests({
         url:`/related/playlist?id=${id}`,
         method:'get',
-
     })
 }
 //详情歌单评论
@@ -94,7 +92,6 @@ export const reqCommentPlayList = (id) => {
     return requests({
         url:`/comment/playlist?id=${id}&limit=6`,
         method:'get',
-
     })
 }
 //MV详情
@@ -102,7 +99,6 @@ export const reqMVDetail = (id) => {
     return requests({
         url:`/mv/detail?mvid=${id}`,
         method:'get',
-
     })
 }
 //MV播放地址
@@ -110,7 +106,6 @@ export const reqMVUrl = (id) => {
     return requests({
         url:`/mv/url?id=${id}&r=1080`,
         method:'get',
-
     })
 }
 //MV评论
@@ -119,7 +114,6 @@ export const reqMVComment = (parma) => {
         url:`/comment/mv`,
         method:'get',
         params:parma
-
     })
 }
 //相似MV
@@ -127,7 +121,40 @@ export const reqMVSimi = (id) => {
     return requests({
         url:`/simi/mv?mvid=${id}&limit=8`,
         method:'get',
-        
-
+    })
+}
+//获取歌手歌曲
+export const reqArtistsSong = (id) => {
+    return requests({
+        url:`/artists?id=${id}`,
+        method:'get',
+    })
+}
+//获取歌手MV
+export const reqArtistsMV = (id) => {
+    return requests({
+        url:`/artist/mv?id=${id}`,
+        method:'get',
+    })
+}
+//获取歌手描述
+export const reqArtistsDesc = (id) => {
+    return requests({
+        url:`/artist/desc?id=${id}`,
+        method:'get',
+    })
+}
+//获取相似歌手
+export const reqArtistsSimi = (id) => {
+    return requests({
+        url:`/simi/artist?id=${id}`,
+        method:'get',
+    })
+}
+//获取歌手专辑
+export const reqArtistsAlbum = (id) => {
+    return requests({
+        url:`/artist/album?id=${id}&limit=12`,
+        method:'get',
     })
 }

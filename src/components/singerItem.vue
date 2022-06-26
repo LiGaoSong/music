@@ -1,6 +1,6 @@
 <template>
   <div class="maix-box">
-    <div class="item" v-for="(item, index) in singer" :key="index">
+    <div class="item" v-for="(item, index) in singer" :key="index" @click="goSingerDetail(item.id)">
       <div class="item-img">
         <el-image
           style="width: 100px; height: 100px"
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
   name: "SingerItem",
   props: {
@@ -38,6 +39,16 @@ export default {
       },
     },
   },
+  setup(){
+    const router = useRouter()
+
+    const goSingerDetail = (id) => {
+      router.push({path:'/singer/detail', query:{id}})
+    }
+    return{
+      goSingerDetail
+    }
+  }
 };
 </script>
 

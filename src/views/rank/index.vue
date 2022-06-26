@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import songlist from "./children/songlist.vue";
+import songlist from "../../components/songlist.vue";
 import dayjs from "dayjs";
 import { useStore } from "vuex";
 import {
