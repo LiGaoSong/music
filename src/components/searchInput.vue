@@ -117,7 +117,7 @@ const keyword = ref("");
   align-items: center;
   height: 80px;
   text-align: center;
-  background-color: #f3f3f3;
+
   .login {
     margin-right: 50px;
   }
@@ -139,8 +139,7 @@ const keyword = ref("");
   .search-input {
     height: 42px;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-    box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
+    background-color: #f1f1f1;
     border: none;
   }
 }

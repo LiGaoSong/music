@@ -52,7 +52,7 @@
             :total="getMvDetail.commentCount"
             :page-size="parma.limit"
             @current-change="changePage"
-            :default-current-page = '1'
+            :default-current-page="1"
           />
         </div>
       </div>
@@ -66,10 +66,10 @@
         <span class="mv-playcount"
           >播放量：{{ numberChange(getMvDetail.playCount) }}</span
         >
-        
-        <div class="mv-introduce">{{ getMvDetail.desc ?  getMvDetail.desc : '暂无简介'}}</div>
-       
-        
+
+        <div class="mv-introduce">
+          {{ getMvDetail.desc ? getMvDetail.desc : "暂无简介" }}
+        </div>
       </div>
       <div class="mv-resemble">
         <div class="recommend-title resemble">相似MV</div>
@@ -251,6 +251,8 @@ export default {
           width: 100%;
           align-items: center;
           text-align: left;
+          background-color: #f1f1f1;
+          border-radius: 10px;
           .comment_info {
             margin-left: 15px;
             .comment-content {
@@ -300,13 +302,6 @@ export default {
     height: 600px;
   }
 }
-.comment-item,
-.mv-Introduction,
-.resemble {
-  border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
-}
 .recommend-title::before {
   content: "";
   width: 7px;
@@ -324,8 +319,7 @@ export default {
   width: 100%;
   margin: 0 0 20px 0;
   padding: 20px;
+  background-color: #f1f1f1;
   border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
 }
 </style>

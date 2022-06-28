@@ -5,7 +5,7 @@
       <i class="iconfont icon-bofang"></i>
     </div>
     <div class="info">
-      <p class="info-name">{{ MvItem.name }}</p>
+      <p class="info-name MVname">{{ MvItem.name }}</p>
       <p class="info-name info-huise">{{ MvItem.artistName }}</p>
       <p class="info-name info-huise">
         <i class="iconfont icon-shipinbofang"></i
@@ -76,6 +76,7 @@ export default {
     word-break: break-all;
     text-overflow: ellipsis;
     overflow: hidden;
+    
   }
   .info-huise {
     color: #999999;
@@ -94,7 +95,7 @@ export default {
 }
 .item:hover {
   .el-image {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   .icon-bofang{
     transform: scale(2.1);

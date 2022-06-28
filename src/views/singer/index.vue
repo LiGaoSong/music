@@ -154,9 +154,7 @@ export default {
     font-size: var(--text14);
     flex: 1;
     padding: 20px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-    box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
+
     .filter-item {
       margin-bottom: 20px;
       cursor: pointer;
@@ -175,6 +173,5 @@ export default {
 .el-button--primary{
   border:none;
   color: #555555;
-   background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
 }
 </style>

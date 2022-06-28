@@ -7,7 +7,7 @@
         </div>
         <div class="albumname">
           <h1><i class="iconfont icon-shouyinji"></i>{{ item.name }}</h1>
-          <p v-for="(sub,index) in item.artists" :key="index">{{ sub.name }}</p>
+          <p v-for="(sub,index) in item.artists.slice(0,2)" :key="index">{{  sub.name }}</p>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
     };
     const goAlbumDetail = (id) => {
         console.log(id);
-        router.push({path:'/album/detail'})
+        router.push({path:'/album/detail',query:{id}})
     }
     return{
       numberChange,
@@ -72,7 +72,6 @@ export default {
       flex-direction: column;
       height: 100px;
       justify-content: space-around;
-      border-bottom: 1px solid #d3d3d3;
     }
   }
 }

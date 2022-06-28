@@ -73,8 +73,6 @@ export default {
   align-items: flex-start;
   padding: 10px;
   border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
   .title-name {
     text-align: center;
     margin-right: 20px;

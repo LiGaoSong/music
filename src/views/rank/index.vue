@@ -3,7 +3,7 @@
     <div class="left">
       <div class="songtop">
         <el-image
-          style="width: 250px; height: 250px"
+          style="width: 250px; height: 250px;box-shadow: 6px 6px 13px #bdbdbd;"
           :src="soar.coverImgUrl"
         ></el-image>
         <div class="cover-info">
@@ -211,17 +211,6 @@ export default {
       }
     );
 
-    watchEffect(() => {
-      if(!route.query.rId){
-        songInfo.parma.id = 19723756;
-        songInfo.parma.offset = 0;
-        store.dispatch("getHotRankList", songInfo.parma.id);
-      }else{
-        songInfo.parma.id = route.query.rId;
-        songInfo.parma.offset = 0;
-        store.dispatch("getHotRankList", songInfo.parma.id);
-      }
-    });
 
     const init = () => {
      
@@ -229,7 +218,7 @@ export default {
     };
 
     onMounted(() => {
-     
+      store.dispatch("getHotRankList", songInfo.parma.id);
       init();
     });
 
@@ -307,10 +296,10 @@ export default {
         cursor: pointer;
       }
       .one {
-        background-color: #f77700;
+        background-color: #ff9635;
       }
       .two {
-        background-color: #b9b9b9;
+        background-color: #dfdfdf;
       }
     }
   }
@@ -332,6 +321,8 @@ export default {
       box-shadow: 0 20px 27px rgb(0 0 0 / 5%);
       .item-info {
         margin-right: 5px;
+        flex: 1;
+        text-align: left;
       }
     }
   }
@@ -346,13 +337,7 @@ span {
   color: #909090;
   margin-left: 10px;
 }
-.cover-info,
-.songbottom,
-.right {
-  border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
-}
+
 .el-image {
   border-radius: 10px;
 }

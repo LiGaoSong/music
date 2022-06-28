@@ -78,8 +78,7 @@ export default {
 .title-list a.router-link-exact-active {
   color: #000;
   width: 120px;
-  border-radius: 52px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
+  border-radius: 10px;
+  background-color: #f1f1f1;
 }
 </style>

@@ -206,9 +206,6 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-    box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
     margin-bottom: 30px;
     text-align: left;
     .filter {
@@ -269,7 +266,6 @@ export default {
 .el-button--primary {
   border: none;
   color: #555555;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
 }
 .more {
   display: inline-block;

@@ -158,3 +158,10 @@ export const reqArtistsAlbum = (id) => {
         method:'get',
     })
 }
+//获取专辑详情
+export const reqAlbumDetail = (id) => {
+    return requests({
+        url:`/album?id=${id}`,
+        method:'get',
+    })
+}

@@ -2,26 +2,22 @@
   <div class="singer">
     <h1 class="title-name"><slot name="title-name"></slot></h1>
     <div class="tabs">
-      <el-tooltip
-        class="box-item"
-        effect="dark"
-        :content="item.name"
-        placement="bottom-start"
-        v-for="(item, index) in hotSinger"
-        :key="index"
-      >
+      <div class="singer-name" v-for="(item, index) in hotSinger" :key="index">
+      <h2 class="name">{{ item.name }}</h2>
         <el-image
           style="width: 100px; height: 100px"
           :src="item.picUrl"
           @click="goSingerDeatil(item.id)"
-        />
-      </el-tooltip>
+        >
+        </el-image>
+        
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 export default {
   name: "HotSingerList",
   props: {
@@ -34,12 +30,11 @@ export default {
   },
 
   setup() {
-
-    const router = useRouter()
+    const router = useRouter();
     const goSingerDeatil = (id) => {
-      router.push({path:'/singer/detail', query:{id}})
-    }
-    return {goSingerDeatil};
+      router.push({ path: "/singer/detail", query: { id } });
+    };
+    return { goSingerDeatil };
   },
 };
 </script>
@@ -54,11 +49,21 @@ export default {
   flex-direction: column;
   padding: 20px;
   border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
   .tabs {
     margin-top: 20px;
+    display: flex;
     width: 100%;
+    flex-wrap: wrap;
+    .singer-name {
+      position: relative;
+      .name {
+        display: block;
+        position: absolute;
+        color:#909090;
+        top: 10%;
+        left: 13%;
+      }
+    }
   }
   .carouselimg {
     display: flex;
@@ -68,9 +73,19 @@ export default {
   border-radius: 5px;
   margin: 5px;
   cursor: pointer;
+  transition: all 0.3s ease-in;
 }
- .el-image :hover {
-    transform: scale(1.2);
-    transition: all 0.3s ease-in;
+// .singer-name:hover {
+//   .el-image{
+//     opacity: 0;
+//   }
+//   .name {
+//     transform: scale(2.1);
+//     opacity: 1;
+    
+//   }
+// }
+.el-image:hover{
+   opacity: 0;
 }
 </style>

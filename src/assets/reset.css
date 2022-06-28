@@ -27,7 +27,8 @@ button, input, select, textarea { /* for ie */
 }
 
 body{
-    background-color: #f3f3f3;
+    /* background-color: #f3f3f3; */
+    background-color: #ffffff;
 }
 
 h1 { font-size: 18px; /* 18px / 12px = 1.5 */ }

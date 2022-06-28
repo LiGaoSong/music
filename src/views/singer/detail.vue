@@ -2,7 +2,7 @@
   <div class="singer-detail" >
     <div class="singer-info">
       <el-image
-        style="width: 200px; height: 200px; border-radius: 10px"
+        style="width: 200px; height: 200px; border-radius: 10px;box-shadow: 6px 6px 13px #bdbdbd;"
         :src="getArtists.picUrl"
       />
       <div class="singer-info-item">
@@ -164,6 +164,10 @@ export default {
       text-align: left;
       margin-left: 20px;
       padding: 20px;
+      .singer-name{
+        font-size: 50px;
+        font-weight: 600;
+      }
       .singer-briefDesc {
         margin-top: 10px;
         .synopsis {
@@ -173,7 +177,7 @@ export default {
           text-overflow: ellipsis;
           display: -webkit-box;
           -webkit-box-orient: vertical;
-          -webkit-line-clamp: 5; /* 这里是超出几行省略 */
+          -webkit-line-clamp: 3; /* 这里是超出几行省略 */
           overflow: hidden;
         }
       }
@@ -196,6 +200,7 @@ export default {
         white-space: pre-line;
         overflow-y: scroll;
         color: #909090;
+        background: #f3f3f3;
       }
     }
   }
@@ -216,17 +221,11 @@ export default {
     }
   }
 }
-.singer-info-item,
-.singer-detail-tabs,
-.cover-desc-all {
-  border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
-}
 .song-heard {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
   h4 {
     font-size: 20px;
     em {
@@ -241,10 +240,11 @@ export default {
     cursor: pointer;
   }
   .one {
-    background-color: #f77700;
+    background-color: #ff9635;
+    margin-right: 10px;
   }
   .two {
-    background-color: #b9b9b9;
+    background-color: #dfdfdf;
   }
 }
 ::v-deep .singer{

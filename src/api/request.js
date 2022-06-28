@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css'
 const requests = axios.create({
     // baseURL:'https://autumnfish.cn/',
     baseURL:'https://vue-music-trtst-com.vercel.app/',
+    // baseURL:'https://music.qier222.com/api/',
     timeout:5000
 })
 

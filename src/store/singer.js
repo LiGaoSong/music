@@ -1,6 +1,7 @@
 import { reqSingerList, reqCatList, reqTrack, reqToplist, reqTrelatedPlayList,
      reqCommentPlayList, reqMVDetail, reqMVUrl, reqMVComment, reqMVSimi,
-     reqArtistsSong,reqArtistsMV,reqArtistsDesc,reqArtistsSimi,reqArtistsAlbum
+     reqArtistsSong,reqArtistsMV,reqArtistsDesc,reqArtistsSimi,reqArtistsAlbum,
+     reqAlbumDetail
     } from "../api"
 
 const state = {
@@ -20,7 +21,10 @@ const state = {
     artists:{},
     artistsDesc:[],
     artistsSimi:[],
-    artistsAlbum:[]
+    artistsAlbum:[],
+    albumSongs:[],
+    albumDetail:{}
+
 
 }
 const mutations = {
@@ -74,6 +78,12 @@ const mutations = {
     },
     ARTISSTSALBUM(state, payload) {
         state.artistsAlbum = payload
+    },
+    ALBUMSONGS(state, payload) {
+        state.albumSongs = payload
+    },
+    ALBUMDETAIL(state, payload) {
+        state.albumDetail = payload
     },
 
 
@@ -170,6 +180,13 @@ const actions = {
         let result = await reqArtistsAlbum(id)
         if (result.code == 200) {
             commit("ARTISSTSALBUM", result.hotAlbums)
+        }
+    },
+    async getAlbumDetail({ commit }, id) {
+        let result = await reqAlbumDetail(id)
+        if (result.code == 200) {
+            commit("ALBUMSONGS", result.songs)
+            commit("ALBUMDETAIL", result.album)
         }
     },
 

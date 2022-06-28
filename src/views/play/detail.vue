@@ -3,7 +3,7 @@
     <div class="left">
       <div class="songtop">
         <el-image
-          style="width: 250px; height: 250px"
+          style="width: 250px; height: 250px;box-shadow: 6px 6px 13px #bdbdbd;"
           :src="soar.coverImgUrl"
         ></el-image>
         <div class="cover-info">
@@ -47,12 +47,6 @@
           <div class="cover-tags">
             <h3>
               歌单简介
-              <em
-                class="desc-close"
-                v-if="isShowDesc"
-                @click="isShowDesc = !isShowDesc"
-                >X</em
-              >
             </h3>
             <span class="synopsis" @click="isShowDesc = true">{{
               soar.description
@@ -101,16 +95,23 @@
       </div>
       <div class="comments">
         <div class="recommend-title">歌单评论</div>
-        <div class="comments-item"  v-for="(item, index) in getCommentPlayList" :key="index">
+        <div
+          class="comments-item"
+          v-for="(item, index) in getCommentPlayList"
+          :key="index"
+        >
           <div class="user-img">
-                      <el-image
-            style="width: 50px; height: 50px; border-radius: 50%"
-            :src="item.user?.avatarUrl"
-          />
+            <el-image
+              style="width: 50px; height: 50px; border-radius: 50%"
+              :src="item.user?.avatarUrl"
+            />
           </div>
           <div class="comments-name">
-            <span class="comments-nickname">{{item.user?.nickname}} <em class="comments-time">{{item.timeStr}}</em></span>
-            <span class="user-comments">{{item.content}}</span>
+            <span class="comments-nickname"
+              >{{ item.user?.nickname }}
+              <em class="comments-time">{{ item.timeStr }}</em></span
+            >
+            <span class="user-comments">{{ item.content }}</span>
           </div>
         </div>
       </div>
@@ -122,15 +123,7 @@
 import songlist from "../../components/songlist.vue";
 import dayjs from "dayjs";
 import { useStore } from "vuex";
-import {
-  computed,
-  onMounted,
-  reactive,
-  ref,
-  toRefs,
-  watch,
-  watchEffect,
-} from "@vue/runtime-core";
+import { computed, onMounted, ref, watch } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 export default {
   name: "playDetail",
@@ -210,7 +203,7 @@ export default {
       getTrelatedPlay,
       goPlayListDetail,
       isShowDesc,
-      getCommentPlayList
+      getCommentPlayList,
     };
   },
 };
@@ -288,6 +281,7 @@ export default {
           white-space: pre-line;
           overflow-y: scroll;
           color: #909090;
+          background-color: #f1f1f1 ;
         }
       }
     }
@@ -315,15 +309,15 @@ export default {
         cursor: pointer;
       }
       .one {
-        background-color: #f77700;
+        background-color: #ff9635;
       }
       .two {
-        background-color: #b9b9b9;
+        background-color: #dfdfdf;
       }
     }
     .more {
       text-align: center;
-      background-color: #f77700;
+      background-color: #ff9635;
       height: 30px;
       margin: 0 auto;
       line-height: 30px;
@@ -334,20 +328,20 @@ export default {
   }
   .right {
     flex: 1;
-    .comments{
+    .comments {
       margin-top: 20px;
-      .user-img{
+      .user-img {
         width: 50px;
         height: 50px;
       }
-      .comments-nickname{
-        color:#000;
-        .comments-time{
-          color:#909090,
+      .comments-nickname {
+        color: #000;
+        .comments-time {
+          color: #909090;
         }
       }
-      .user-comments{
-        background-color: #d4d4d4e6;
+      .user-comments {
+        background-color: #f1f1f1;
         text-align: left;
         line-height: 20px;
         padding: 10px;
@@ -368,15 +362,7 @@ span {
   color: #909090;
   margin-left: 10px;
 }
-.cover-info,
-.songbottom,
-.recommend,
-.cover-desc-all,
-.comments {
-  border-radius: 10px;
-  background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-  box-shadow: 6px 6px 13px #bdbdbd, -6px -6px 13px #ffffff;
-}
+
 .el-image {
   border-radius: 10px;
 }
@@ -397,19 +383,23 @@ span {
   margin-bottom: 10px;
 }
 
-.recommend,.comments {
+.recommend,
+.comments {
   display: flex;
   flex-direction: column;
   padding: 10px;
   align-items: flex-start;
-  .recommend-item, .comments-item {
+  .recommend-item,
+  .comments-item {
     display: flex;
     margin-bottom: 20px;
   }
-  .recommend-item:last-child,.comments-item:last-child {
+  .recommend-item:last-child,
+  .comments-item:last-child {
     margin-bottom: 0;
   }
-  .recommend-name, .comments-name {
+  .recommend-name,
+  .comments-name {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -417,6 +407,4 @@ span {
     cursor: pointer;
   }
 }
-
-
 </style>
